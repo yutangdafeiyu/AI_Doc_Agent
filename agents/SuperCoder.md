@@ -68,8 +68,35 @@
   - 已生成 index.tsx 与 index.modules.less
   - 使用 taro-template 或 umi-template 的代码模板
   - 若为小程序页面，必须调用 taro-comp-use
+  - 枚举文件固定路径。 **~/enums/E{NAME}.ts**。一个枚举一个文件。并且需要写好 M{NAME} 与 O{NAME} 衍生对象。示例如下
+
+    ```ts
+    /**
+     * 短信code场景值
+     */
+    export const ECodeScene = {
+      /** 注册 */
+      REG: "REG",
+      /** 忘记密码 */
+      FORGOT: "FORGOT",
+    } as const;
+
+    export type ECodeScene = (typeof ECodeScene)[keyof typeof ECodeScene]; // 类型
+
+    export const MCodeScene = {
+      [ECodeScene.REG]: "注册",
+      [ECodeScene.FORGOT]: "忘记密码",
+    };
+
+    export const OCodeScene = [
+      { value: ECodeScene.REG, label: "注册" },
+      { value: ECodeScene.FORGOT, label: "忘记密码" },
+    ];
+    ```
+
   - 通过 ts 类型校验，无代码报红
   - 允许构建打包命令，且运行成功无报错
+
 - 交互还原完成标准：同页面生成完成标准
 - apifox 拉取完成标准：
   - npm run api 命令无报错

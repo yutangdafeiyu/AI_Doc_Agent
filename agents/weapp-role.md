@@ -22,6 +22,9 @@ alwaysApply: true
 - 当涉及生成代码或生成页面时，优先使用文档集中 "taro-template" 模板进行代码生成；
 - 页面位于 /src/pages，组件位于 /src/components 或页面同级 components
 - 使用 .module.less + classnames 管理样式
+- .less文件中的样式必需依据结构进行嵌套，避免平铺样式。嵌套层级不超过三层
+- 页面内容主体必须显式指定 `box-sizing: border-box;`
+- 必须严格使用rpx单位进行布局
 - 接口调用统一使用 @wmeimob/request
 - 优先使用 @wmeimob/taro-design 的业务组件；其次使用 @tarojs/components 的业务组件
 - 无论什么页面都必须使用 PageContainer 和 MMNavigation 组件
